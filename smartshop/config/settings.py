@@ -7,7 +7,6 @@ try:
 except ImportError:
     pass
 
-# BASE_DIR inatambua vizuri muundo wa mradi wako uliopo ndani ya folda ya smartshop
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "insecure-dev-key-change-me")
@@ -36,23 +35,23 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
 
-    # Zote zimewekewa kiambishi cha smartshop ili Python izitambue kwa usahihi kwenye Render
-    "smartshop.apps.accounts",
-    "smartshop.apps.shops",
-    "smartshop.apps.subscriptions",
-    "smartshop.apps.inventory",
-    "smartshop.apps.sales",
-    "smartshop.apps.customers",
-    "smartshop.apps.suppliers",
-    "smartshop.apps.expenses",
-    "smartshop.apps.reports",
-    "smartshop.apps.notifications",
-    "smartshop.apps.audit",
-    "smartshop.apps.core",
+    "apps.accounts",
+    "apps.shops",
+    "apps.subscriptions",
+    "apps.inventory",
+    "apps.sales",
+    "apps.customers",
+    "apps.suppliers",
+    "apps.expenses",
+    "apps.reports",
+    "apps.notifications",
+    "apps.audit",
+    "apps.core",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -60,11 +59,11 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "smartshop.apps.accounts.middleware.SessionIdleTimeoutMiddleware",
-    "smartshop.apps.accounts.middleware.ShopStatusMiddleware",
+    "apps.accounts.middleware.SessionIdleTimeoutMiddleware",
+    "apps.accounts.middleware.ShopStatusMiddleware",
 ]
 
-ROOT_URLCONF = "smartshop.config.urls"
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
@@ -78,13 +77,15 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.i18n",
-                "smartshop.apps.core.context_processors.shop_context",
+                "apps.core.context_processors.shop_context",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = "smartshop.config.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
+
+DB_SSL_REQUIRE = os.environ.get("DB_SSL_REQUIRE", "True") == "True"
 
 DATABASES = {
     "default": {
@@ -95,6 +96,7 @@ DATABASES = {
         "HOST": os.environ.get("DATABASE_HOST", "127.0.0.1"),
         "PORT": os.environ.get("DATABASE_PORT", "5432"),
         "CONN_MAX_AGE": 60,
+        "OPTIONS": {"sslmode": "require"} if DB_SSL_REQUIRE else {},
     }
 }
 
@@ -130,6 +132,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
