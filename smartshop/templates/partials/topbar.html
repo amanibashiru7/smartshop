@@ -1,0 +1,21 @@
+{% load i18n %}
+<nav class="navbar navbar-light bg-white border-bottom px-3">
+  <button class="btn btn-outline-secondary d-lg-none" id="sidebarToggle"><i class="bi bi-list"></i></button>
+  <div class="ms-auto d-flex align-items-center gap-3">
+    {% if current_shop %}
+      <span class="badge bg-{% if current_plan.code == 'premium' %}warning text-dark{% else %}secondary{% endif %}">
+        {{ current_plan.name|default:"Free" }}
+      </span>
+      <span class="text-muted small d-none d-md-inline">{{ current_shop.name }}</span>
+    {% endif %}
+    <form action="{% url 'set_language' %}" method="post" class="d-flex">
+      {% csrf_token %}
+      <input name="next" type="hidden" value="{{ request.path }}">
+      <select name="language" class="form-select form-select-sm" onchange="this.form.submit()">
+        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+        <option value="sw" {% if LANGUAGE_CODE == 'sw' %}selected{% endif %}>Kiswahili</option>
+      </select>
+    </form>
+    <span class="d-none d-md-inline"><i class="bi bi-person-circle"></i> {{ user.first_name|default:user.email }}</span>
+  </div>
+</nav>

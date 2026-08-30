@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Sale" %} #{{ sale.id }}</h3>
+<div class="card p-4">
+<p><strong>{% trans "Date" %}:</strong> {{ sale.created_at|date:"Y-m-d H:i" }}</p>
+<p><strong>{% trans "Cashier" %}:</strong> {{ sale.cashier.email }}</p>
+<p><strong>{% trans "Customer" %}:</strong> {{ sale.customer.name|default:"Walk-in" }}</p>
+<table class="table">
+<thead><tr><th>{% trans "Product" %}</th><th>{% trans "Qty" %}</th><th>{% trans "Unit Price" %}</th><th>{% trans "Total" %}</th></tr></thead>
+<tbody>
+{% for i in items %}<tr><td>{{ i.product.name }}</td><td>{{ i.quantity }}</td><td>{{ i.unit_price }}</td><td>{{ i.line_total }}</td></tr>{% endfor %}
+</tbody>
+<tfoot><tr><th colspan="3" class="text-end">{% trans "Grand Total" %}</th><th>{{ sale.total_amount }}</th></tr></tfoot>
+</table>
+</div>
+{% endblock %}

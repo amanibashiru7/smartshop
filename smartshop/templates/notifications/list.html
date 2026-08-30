@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Notifications" %}</h3>
+<div class="card p-3">
+<ul class="list-group list-group-flush">
+{% for n in notifications %}
+<li class="list-group-item">
+  <div class="fw-bold">{{ n.title }}</div>
+  <div class="text-muted small">{{ n.message }}</div>
+  <div class="text-muted small">{{ n.created_at|date:"Y-m-d H:i" }}</div>
+</li>
+{% empty %}<li class="list-group-item text-muted">{% trans "No notifications." %}</li>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}

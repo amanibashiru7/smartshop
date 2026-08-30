@@ -1,0 +1,32 @@
+{% load i18n %}
+<nav class="sidebar bg-dark text-white" id="sidebar">
+  <div class="sidebar-brand p-3 border-bottom border-secondary">
+    <i class="bi bi-shop"></i> <strong>SMARTSHOP</strong>
+  </div>
+  <ul class="nav flex-column p-2">
+    {% if user.is_super_admin %}
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'core:dashboard_superadmin' %}"><i class="bi bi-speedometer2"></i> {% trans "Dashboard" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'shops:pending_applications' %}"><i class="bi bi-hourglass-split"></i> {% trans "Pending Applications" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'shops:all_shops' %}"><i class="bi bi-shop-window"></i> {% trans "All Shops" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="/admin/"><i class="bi bi-gear"></i> {% trans "Admin / Settings" %}</a></li>
+    {% else %}
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'core:dashboard_owner' %}"><i class="bi bi-speedometer2"></i> {% trans "Dashboard" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'inventory:product_list' %}"><i class="bi bi-box-seam"></i> {% trans "Products" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'inventory:category_list' %}"><i class="bi bi-tags"></i> {% trans "Categories" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'inventory:stock_list' %}"><i class="bi bi-boxes"></i> {% trans "Inventory" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'sales:pos' %}"><i class="bi bi-cart-check"></i> {% trans "Sales / POS" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'sales:sale_history' %}"><i class="bi bi-clock-history"></i> {% trans "Sales History" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'customers:customer_list' %}"><i class="bi bi-people"></i> {% trans "Customers" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'suppliers:supplier_list' %}"><i class="bi bi-truck"></i> {% trans "Suppliers" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'expenses:expense_list' %}"><i class="bi bi-cash-stack"></i> {% trans "Expenses" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'reports:sales_report' %}"><i class="bi bi-graph-up"></i> {% trans "Reports" %}</a></li>
+      {% if user.is_owner %}
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'accounts:staff_list' %}"><i class="bi bi-person-badge"></i> {% trans "Staff" %}</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="{% url 'subscriptions:upgrade' %}"><i class="bi bi-star"></i> {% trans "Subscription" %}</a></li>
+      {% endif %}
+    {% endif %}
+    <li class="nav-item mt-3 border-top border-secondary pt-2">
+      <a class="nav-link text-white" href="{% url 'accounts:logout' %}"><i class="bi bi-box-arrow-right"></i> {% trans "Logout" %}</a>
+    </li>
+  </ul>
+</nav>

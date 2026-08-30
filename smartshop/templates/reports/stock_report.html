@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Stock Report" %}</h3>
+<div class="card p-3 mb-3"><small class="text-muted">{% trans "Total Stock Value" %}</small><h4>{{ stock_value }}</h4></div>
+<div class="card p-3">
+<table class="table table-sm">
+<thead><tr><th>{% trans "Product" %}</th><th>{% trans "Stock" %}</th><th>{% trans "Buying Price" %}</th><th>{% trans "Value" %}</th></tr></thead>
+<tbody>{% for p in products %}<tr><td>{{ p.name }}</td><td>{{ p.current_stock }}</td><td>{{ p.buying_price }}</td><td>{{ p.current_stock|floatformat:0 }} x {{ p.buying_price }}</td></tr>{% endfor %}</tbody>
+</table>
+</div>
+{% endblock %}

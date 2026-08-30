@@ -1,0 +1,14 @@
+:root { --ss-primary:#0d6efd; --ss-dark:#1c2333; }
+body{background:#f4f6f9;}
+#wrapper{min-height:100vh;}
+.sidebar{width:250px;min-width:250px;background:var(--ss-dark)!important;position:sticky;top:0;height:100vh;overflow-y:auto;transition:left .25s ease;}
+.sidebar-brand{font-size:1.1rem;letter-spacing:.5px;}
+.nav-link{border-radius:6px;margin-bottom:2px;}
+.nav-link:hover,.nav-link.active{background:rgba(255,255,255,.1);}
+.card{border:none;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.stat-card{border-radius:14px;padding:1.25rem;color:#fff;}
+.guest-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d6efd,#1c2333);padding:1rem;}
+.guest-card{max-width:440px;width:100%;background:#fff;border-radius:16px;padding:2rem;}
+.pos-product-card{cursor:pointer;transition:transform .1s;}
+.pos-product-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.1);}
+@media (max-width:991.98px){ .sidebar{position:fixed;left:-260px;z-index:1050;} .sidebar.show{left:0;} }

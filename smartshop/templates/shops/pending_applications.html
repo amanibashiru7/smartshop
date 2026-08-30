@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Pending Applications" %}</h3>
+<div class="card p-3">
+<div class="table-responsive">
+<table class="table align-middle">
+<thead><tr><th>{% trans "Shop" %}</th><th>{% trans "Owner" %}</th><th>{% trans "Email" %}</th><th>{% trans "Phone" %}</th><th>{% trans "Date" %}</th><th></th></tr></thead>
+<tbody>
+{% for shop in shops %}
+<tr>
+  <td>{{ shop.name }}</td>
+  <td>{{ shop.owner.first_name }}</td>
+  <td>{{ shop.owner.email }} {% if shop.owner.email_verified %}<i class="bi bi-patch-check-fill text-success" title="{% trans 'Verified' %}"></i>{% else %}<i class="bi bi-exclamation-circle text-warning" title="{% trans 'Not verified' %}"></i>{% endif %}</td>
+  <td>{{ shop.phone }}</td>
+  <td>{{ shop.created_at|date:"Y-m-d" }}</td>
+  <td class="d-flex gap-2">
+    <form method="post" action="{% url 'shops:approve_shop' shop.id %}">{% csrf_token %}<button class="btn btn-sm btn-success">{% trans "Approve" %}</button></form>
+    <a href="{% url 'shops:reject_shop' shop.id %}" class="btn btn-sm btn-danger">{% trans "Reject" %}</a>
+  </td>
+</tr>
+{% empty %}
+<tr><td colspan="6" class="text-center text-muted">{% trans "No pending applications." %}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+{% endblock %}

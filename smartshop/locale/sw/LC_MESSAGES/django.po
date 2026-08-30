@@ -1,0 +1,634 @@
+# Swahili translations for SmartShop.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the SmartShop project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SmartShop 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-08-30 06:29+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: sw\n"
+"Language-Team: sw <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Account Suspended"
+msgstr "Akaunti Imesimamishwa"
+
+msgid "Activate"
+msgstr "Washa"
+
+msgid "Active"
+msgstr "Hai"
+
+msgid "Active Subscriptions"
+msgstr "Usajili Unaotumika"
+
+msgid "Add"
+msgstr "Ongeza"
+
+msgid "Add Category"
+msgstr "Ongeza Aina ya Bidhaa"
+
+msgid "Add Customer"
+msgstr "Ongeza Mteja"
+
+msgid "Add Item"
+msgstr "Ongeza Bidhaa"
+
+msgid "Add Product"
+msgstr "Ongeza Bidhaa"
+
+msgid "Add Staff Member"
+msgstr "Ongeza Mfanyakazi"
+
+msgid "Add Stock"
+msgstr "Ongeza Hisa"
+
+msgid "Add Supplier"
+msgstr "Ongeza Msambazaji"
+
+msgid "Adjust"
+msgstr "Rekebisha"
+
+msgid "Adjust Stock"
+msgstr "Rekebisha Hisa"
+
+msgid "Admin / Settings"
+msgstr "Msimamizi / Mipangilio"
+
+msgid "Advanced analytics"
+msgstr "Uchambuzi wa kina"
+
+msgid "Advanced profit reports"
+msgstr "Ripoti za kina za faida"
+
+msgid "All Shops"
+msgstr "Maduka Yote"
+
+msgid "Already have an account?"
+msgstr "Una akaunti tayari?"
+
+msgid "Amount"
+msgstr "Kiasi"
+
+msgid "Application Pending"
+msgstr "Ombi Linasubiri"
+
+msgid "Application Rejected"
+msgstr "Ombi Limekataliwa"
+
+msgid "Approve"
+msgstr "Idhinisha"
+
+msgid "Approved"
+msgstr "Imeidhinishwa"
+
+msgid "Back to login"
+msgstr "Rudi kwenye kuingia"
+
+msgid "Balance Owed"
+msgstr "Deni Linalodaiwa"
+
+msgid "Best Selling Products"
+msgstr "Bidhaa Zinazouzwa Zaidi"
+
+msgid "Buying Price"
+msgstr "Bei ya Kununua"
+
+msgid "Cancel"
+msgstr "Ghairi"
+
+msgid "Cart"
+msgstr "Kikapu"
+
+msgid "Cart is empty."
+msgstr "Kikapu ni tupu."
+
+msgid "Cash"
+msgstr "Fedha Taslimu"
+
+msgid "Cashier"
+msgstr "Mtunza Fedha"
+
+msgid "Categories"
+msgstr "Aina za Bidhaa"
+
+msgid "Category"
+msgstr "Aina"
+
+msgid "Change"
+msgstr "Badilisha"
+
+msgid "Complete Sale"
+msgstr "Kamilisha Muuzo"
+
+msgid "Confirm Rejection"
+msgstr "Thibitisha Kukataa"
+
+msgid "Confirm password"
+msgstr "Thibitisha nenosiri"
+
+msgid "Correct & Resubmit"
+msgstr "Rekebisha na Tuma Tena"
+
+msgid "Cost of Goods"
+msgstr "Gharama za Bidhaa"
+
+msgid "Create Staff Account"
+msgstr "Tengeneza Akaunti ya Mfanyakazi"
+
+msgid "Create account"
+msgstr "Tengeneza akaunti"
+
+msgid "Credit"
+msgstr "Deni"
+
+msgid "Credit sale (add to customer debt)"
+msgstr "Muuzo wa deni (ongeza kwenye deni la mteja)"
+
+msgid "Current Plan"
+msgstr "Mpango wa Sasa"
+
+msgid "Current Stock"
+msgstr "Hisa ya Sasa"
+
+msgid "Current stock"
+msgstr "hisa ya sasa"
+
+msgid "Customer"
+msgstr "Mteja"
+
+msgid "Customer (optional)"
+msgstr "Mteja (si lazima)"
+
+msgid "Customers"
+msgstr "Wateja"
+
+msgid "Dashboard"
+msgstr "Dashibodi"
+
+msgid "Date"
+msgstr "Tarehe"
+
+msgid "Deactivate"
+msgstr "Zima"
+
+msgid "Description"
+msgstr "Maelezo"
+
+msgid "Edit"
+msgstr "Hariri"
+
+msgid "Email"
+msgstr "Barua Pepe"
+
+msgid "End"
+msgstr "Mwisho"
+
+msgid "Enter the code sent to"
+msgstr "Ingiza namba iliyotumwa kwa"
+
+msgid "Est. Profit (month)"
+msgstr "Faida Inayokadiriwa (mwezi)"
+
+msgid "Expenses"
+msgstr "Matumizi"
+
+msgid "Expires"
+msgstr "Inamalizika"
+
+msgid "Export CSV"
+msgstr "Pakua CSV"
+
+msgid "Export Excel"
+msgstr "Pakua Excel"
+
+msgid "Export PDF"
+msgstr "Pakua PDF"
+
+msgid "Filter"
+msgstr "Chuja"
+
+msgid "Free Shops"
+msgstr "Maduka ya Bure"
+
+msgid "Full name"
+msgstr "Jina Kamili"
+
+msgid "Go Home"
+msgstr "Rudi Mwanzo"
+
+msgid "Grand Total"
+msgstr "Jumla Kuu"
+
+msgid "History"
+msgstr "Historia"
+
+msgid "Inactive"
+msgstr "Haifanyi Kazi"
+
+msgid "Inventory"
+msgstr "Hisa"
+
+msgid "Inventory / Stock"
+msgstr "Hisa / Bidhaa"
+
+msgid "Login"
+msgstr "Ingia"
+
+msgid "Login to your account"
+msgstr "Ingia kwenye akaunti yako"
+
+msgid "Login verification"
+msgstr "Uthibitisho wa Kuingia"
+
+msgid "Logout"
+msgstr "Toka"
+
+msgid "Low Stock"
+msgstr "Hisa Ndogo"
+
+msgid "Low Stock Items"
+msgstr "Bidhaa Zenye Hisa Ndogo"
+
+msgid "Min Level"
+msgstr "Kiwango cha Chini"
+
+msgid "More inventory tools"
+msgstr "Zana zaidi za hisa"
+
+msgid "Name"
+msgstr "Jina"
+
+msgid "No account?"
+msgstr "Huna akaunti?"
+
+msgid "No categories yet."
+msgstr "Hakuna aina za bidhaa bado."
+
+msgid "No customers yet."
+msgstr "Hakuna wateja bado."
+
+msgid "No expenses recorded."
+msgstr "Hakuna matumizi yaliyorekodiwa."
+
+msgid "No low stock items."
+msgstr "Hakuna bidhaa zenye hisa ndogo."
+
+msgid "No movements yet."
+msgstr "Hakuna mabadiliko bado."
+
+msgid "No notifications."
+msgstr "Hakuna arifa."
+
+msgid "No payments yet."
+msgstr "Hakuna malipo bado."
+
+msgid "No pending applications."
+msgstr "Hakuna maombi yanayosubiri."
+
+msgid "No products yet."
+msgstr "Hakuna bidhaa bado."
+
+msgid "No products."
+msgstr "Hakuna bidhaa."
+
+msgid "No purchases yet."
+msgstr "Hakuna ununuzi bado."
+
+msgid "No sales yet."
+msgstr "Hakuna mauzo bado."
+
+msgid "No staff yet."
+msgstr "Hakuna wafanyakazi bado."
+
+msgid "No suppliers yet."
+msgstr "Hakuna wasambazaji bado."
+
+msgid "Not verified"
+msgstr "Haijathibitishwa"
+
+msgid "Note"
+msgstr "Maelezo"
+
+msgid "Notifications"
+msgstr "Arifa"
+
+msgid "Outstanding Balance"
+msgstr "Deni Lililobaki"
+
+msgid "Outstanding Debt"
+msgstr "Deni Lililobaki"
+
+msgid "Owed"
+msgstr "Anadaiwa"
+
+msgid "Owner"
+msgstr "Mmiliki"
+
+msgid "PDF / Excel export"
+msgstr "Kupakua PDF / Excel"
+
+msgid "PDF/Excel exports"
+msgstr "Kupakua PDF/Excel"
+
+msgid "Password"
+msgstr "Nenosiri"
+
+msgid "Payment History"
+msgstr "Historia ya Malipo"
+
+msgid "Payment gateway integration point - to be connected in a future phase."
+msgstr "Sehemu ya kuunganisha njia ya malipo - itaunganishwa baadaye."
+
+msgid "Pending"
+msgstr "Inasubiri"
+
+msgid "Pending Applications"
+msgstr "Maombi Yanayosubiri"
+
+msgid "Phone"
+msgstr "Simu"
+
+msgid "Plan"
+msgstr "Mpango"
+
+msgid "Please contact the platform administrator."
+msgstr "Tafadhali wasiliana na msimamizi wa mfumo."
+
+msgid "Premium Feature"
+msgstr "Kipengele cha Premium"
+
+msgid "Premium Plan"
+msgstr "Mpango wa Premium"
+
+msgid "Premium Shops"
+msgstr "Maduka ya Premium"
+
+msgid "Price"
+msgstr "Bei"
+
+msgid "Product"
+msgstr "Bidhaa"
+
+msgid "Products"
+msgstr "Bidhaa"
+
+msgid "Profit"
+msgstr "Faida"
+
+msgid "Profit & Advanced Analytics"
+msgstr "Faida na Uchambuzi wa Kina"
+
+msgid "Profit Report (Premium)"
+msgstr "Ripoti ya Faida (Premium)"
+
+msgid "Profit reports"
+msgstr "Ripoti za faida"
+
+msgid "Purchase History"
+msgstr "Historia ya Ununuzi"
+
+msgid "Qty"
+msgstr "Idadi"
+
+msgid "Qty Sold"
+msgstr "Idadi Iliyouzwa"
+
+msgid "Reactivate"
+msgstr "Washa Tena"
+
+msgid "Reason"
+msgstr "Sababu"
+
+msgid "Record Expense"
+msgstr "Rekodi Matumizi"
+
+msgid "Record Payment"
+msgstr "Rekodi Malipo"
+
+msgid "Record Purchase"
+msgstr "Rekodi Ununuzi"
+
+msgid "Record Purchase from"
+msgstr "Rekodi Ununuzi kutoka"
+
+msgid "Register your shop"
+msgstr "Sajili duka lako"
+
+msgid "Reject"
+msgstr "Kataa"
+
+msgid "Reject Application"
+msgstr "Kataa Ombi"
+
+msgid "Rejected"
+msgstr "Imekataliwa"
+
+msgid "Rejection reason"
+msgstr "Sababu ya Kukataa"
+
+msgid "Reports"
+msgstr "Ripoti"
+
+msgid "Resend code"
+msgstr "Tuma Namba Tena"
+
+msgid "Resulting Stock"
+msgstr "Hisa Iliyobaki"
+
+msgid "Revenue"
+msgstr "Mapato"
+
+msgid "Review Pending Applications"
+msgstr "Pitia Maombi Yanayosubiri"
+
+msgid "Role"
+msgstr "Wadhifa"
+
+msgid "Sale"
+msgstr "Muuzo"
+
+msgid "Sale completed"
+msgstr "Muuzo Umekamilika"
+
+msgid "Sales"
+msgstr "Mauzo"
+
+msgid "Sales - Last 7 Days"
+msgstr "Mauzo - Siku 7 Zilizopita"
+
+msgid "Sales / POS"
+msgstr "Mauzo / POS"
+
+msgid "Sales History"
+msgstr "Historia ya Mauzo"
+
+msgid "Sales Report"
+msgstr "Ripoti ya Mauzo"
+
+msgid "Save"
+msgstr "Hifadhi"
+
+msgid "Save Adjustment"
+msgstr "Hifadhi Marekebisho"
+
+msgid "Save Purchase"
+msgstr "Hifadhi Ununuzi"
+
+msgid "Search by name, SKU, barcode..."
+msgstr "Tafuta kwa jina, SKU, barcode..."
+
+msgid "Search products..."
+msgstr "Tafuta bidhaa..."
+
+msgid "Select Products"
+msgstr "Chagua Bidhaa"
+
+msgid "Select product"
+msgstr "Chagua bidhaa"
+
+msgid "Shop"
+msgstr "Duka"
+
+msgid "Shop address"
+msgstr "Anuani ya Duka"
+
+msgid "Shop name"
+msgstr "Jina la Duka"
+
+msgid "Something went wrong. Please go back and try again."
+msgstr "Kuna hitilafu imetokea. Tafadhali rudi na ujaribu tena."
+
+msgid "Staff"
+msgstr "Wafanyakazi"
+
+msgid "Staff Management"
+msgstr "Usimamizi wa Wafanyakazi"
+
+msgid "Start"
+msgstr "Mwanzo"
+
+msgid "Status"
+msgstr "Hali"
+
+msgid "Stock"
+msgstr "Hisa"
+
+msgid "Stock History"
+msgstr "Historia ya Hisa"
+
+msgid "Stock In"
+msgstr "Ongeza Hisa"
+
+msgid "Stock Report"
+msgstr "Ripoti ya Hisa"
+
+msgid "Subscription"
+msgstr "Usajili"
+
+msgid "Super Admin Dashboard"
+msgstr "Dashibodi ya Msimamizi Mkuu"
+
+msgid "Suppliers"
+msgstr "Wasambazaji"
+
+msgid "Suppliers & Purchases"
+msgstr "Wasambazaji na Ununuzi"
+
+msgid "Suspend"
+msgstr "Simamisha"
+
+msgid "Suspended"
+msgstr "Imesimamishwa"
+
+msgid "This Month"
+msgstr "Mwezi Huu"
+
+msgid "This Week"
+msgstr "Wiki Hii"
+
+msgid "Today's Sales"
+msgstr "Mauzo ya Leo"
+
+msgid "Total"
+msgstr "Jumla"
+
+msgid "Total Sales"
+msgstr "Jumla ya Mauzo"
+
+msgid "Total Shops"
+msgstr "Jumla ya Maduka"
+
+msgid "Total Stock Value"
+msgstr "Thamani ya Jumla ya Hisa"
+
+msgid "Transactions"
+msgstr "Miamala"
+
+msgid "Type"
+msgstr "Aina"
+
+msgid "Unit Price"
+msgstr "Bei ya Kipimo"
+
+msgid "Unit cost"
+msgstr "gharama ya kipimo"
+
+msgid "Unlimited products & staff"
+msgstr "Bidhaa na wafanyakazi bila kikomo"
+
+msgid "Upgrade Now"
+msgstr "Pandisha Daraja Sasa"
+
+msgid "Upgrade to Premium"
+msgstr "Pandisha kuwa Premium"
+
+msgid "Value"
+msgstr "Thamani"
+
+msgid "Verification code"
+msgstr "Namba ya Uthibitisho"
+
+msgid "Verified"
+msgstr "Imethibitishwa"
+
+msgid "Verify"
+msgstr "Thibitisha"
+
+msgid "Verify & Login"
+msgstr "Thibitisha na Ingia"
+
+msgid "Verify your email"
+msgstr "Thibitisha barua pepe yako"
+
+msgid "View"
+msgstr "Angalia"
+
+msgid "View All Shops"
+msgstr "Angalia Maduka Yote"
+
+msgid "Walk-in customer"
+msgstr "Mteja wa kawaida"
+
+msgid "We sent a 6-digit code to"
+msgstr "Tumetuma namba ya tarakimu 6 kwa"
+
+msgid ""
+"Your shop application is awaiting Super Admin review. You'll receive an "
+"email once it's approved."
+msgstr ""
+"Ombi la duka lako linasubiri kupitiwa na Msimamizi Mkuu. Utapokea barua "
+"pepe litakapoidhinishwa."
+
+msgid "is available with Premium."
+msgstr "inapatikana kwa mpango wa Premium."
+

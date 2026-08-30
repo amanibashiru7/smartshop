@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{{ customer.name }}</h3>
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="card p-3 mb-3">
+      <p><strong>{% trans "Phone" %}:</strong> {{ customer.phone }}</p>
+      <p><strong>{% trans "Outstanding Balance" %}:</strong> <span class="fw-bold {% if customer.balance > 0 %}text-danger{% endif %}">{{ customer.balance }}</span></p>
+    </div>
+    <div class="card p-3">
+      <h6>{% trans "Purchase History" %}</h6>
+      <table class="table table-sm">
+        <thead><tr><th>{% trans "Date" %}</th><th>{% trans "Total" %}</th><th>{% trans "Type" %}</th></tr></thead>
+        <tbody>{% for s in sales %}<tr><td>{{ s.created_at|date:"Y-m-d" }}</td><td>{{ s.total_amount }}</td><td>{% if s.is_credit %}{% trans "Credit" %}{% else %}{% trans "Cash" %}{% endif %}</td></tr>{% empty %}<tr><td colspan="3" class="text-muted">{% trans "No purchases yet." %}</td></tr>{% endfor %}</tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card p-3 mb-3">
+      <h6>{% trans "Record Payment" %}</h6>
+      <form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn btn-success w-100" type="submit">{% trans "Record Payment" %}</button></form>
+    </div>
+    <div class="card p-3">
+      <h6>{% trans "Payment History" %}</h6>
+      <ul class="list-group list-group-flush">
+        {% for p in payments %}<li class="list-group-item d-flex justify-content-between"><span>{{ p.created_at|date:"Y-m-d" }}</span><span>{{ p.amount }}</span></li>{% empty %}<li class="list-group-item text-muted">{% trans "No payments yet." %}</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

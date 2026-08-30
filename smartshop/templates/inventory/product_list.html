@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+  <h3 class="mb-0">{% trans "Products" %}</h3>
+  {% if user.is_owner or user.staff_role == 'manager' %}
+  <a href="{% url 'inventory:product_create' %}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> {% trans "Add Product" %}</a>
+  {% endif %}
+</div>
+<form class="mb-3" method="get"><input class="form-control" name="q" value="{{ q }}" placeholder="{% trans 'Search by name, SKU, barcode...' %}"></form>
+<div class="card p-3">
+<div class="table-responsive">
+<table class="table align-middle">
+<thead><tr><th>{% trans "Name" %}</th><th>{% trans "Category" %}</th><th>{% trans "Price" %}</th><th>{% trans "Stock" %}</th><th>{% trans "Status" %}</th><th></th></tr></thead>
+<tbody>
+{% for p in products %}
+<tr>
+  <td>{{ p.name }}</td><td>{{ p.category.name|default:"-" }}</td><td>{{ p.selling_price }}</td>
+  <td>{% if p.is_low_stock %}<span class="text-danger fw-bold">{{ p.current_stock }}</span>{% else %}{{ p.current_stock }}{% endif %}</td>
+  <td>{% if p.is_active %}<span class="badge bg-success">{% trans "Active" %}</span>{% else %}<span class="badge bg-secondary">{% trans "Inactive" %}</span>{% endif %}</td>
+  <td class="d-flex gap-2">
+    <a href="{% url 'inventory:product_edit' p.pk %}" class="btn btn-sm btn-outline-primary">{% trans "Edit" %}</a>
+    <form method="post" action="{% url 'inventory:product_toggle_active' p.pk %}">{% csrf_token %}<button class="btn btn-sm btn-outline-secondary">{% if p.is_active %}{% trans "Deactivate" %}{% else %}{% trans "Activate" %}{% endif %}</button></form>
+  </td>
+</tr>
+{% empty %}<tr><td colspan="6" class="text-center text-muted">{% trans "No products yet." %}</td></tr>
+{% endfor %}
+</tbody></table>
+</div></div>
+{% endblock %}

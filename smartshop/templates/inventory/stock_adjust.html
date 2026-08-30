@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Adjust Stock" %} - {{ product.name }}</h3>
+<div class="card p-4" style="max-width:500px;">
+<p class="text-muted">{% trans "Current stock" %}: <strong>{{ product.current_stock }}</strong></p>
+<form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn btn-primary" type="submit">{% trans "Save Adjustment" %}</button></form>
+</div>
+{% endblock %}

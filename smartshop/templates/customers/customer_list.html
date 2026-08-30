@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Customers" %}</h3>
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="card p-3">
+    <div class="table-responsive">
+    <table class="table align-middle">
+    <thead><tr><th>{% trans "Name" %}</th><th>{% trans "Phone" %}</th><th>{% trans "Balance Owed" %}</th><th></th></tr></thead>
+    <tbody>
+    {% for c in customers %}
+    <tr>
+      <td>{{ c.name }}</td><td>{{ c.phone }}</td>
+      <td class="{% if c.balance > 0 %}text-danger fw-bold{% endif %}">{{ c.balance }}</td>
+      <td><a href="{% url 'customers:customer_detail' c.pk %}" class="btn btn-sm btn-outline-primary">{% trans "View" %}</a></td>
+    </tr>
+    {% empty %}<tr><td colspan="4" class="text-center text-muted">{% trans "No customers yet." %}</td></tr>
+    {% endfor %}
+    </tbody></table>
+    </div></div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card p-3">
+      <h6>{% trans "Add Customer" %}</h6>
+      <form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn btn-primary w-100" type="submit">{% trans "Add" %}</button></form>
+    </div>
+  </div>
+</div>
+{% endblock %}

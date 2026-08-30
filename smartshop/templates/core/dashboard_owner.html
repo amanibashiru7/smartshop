@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Dashboard" %} - {{ current_shop.name }}</h3>
+
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3">
+    <div class="stat-card" style="background:#0d6efd;"><small>{% trans "Today's Sales" %}</small><h3>{{ today_sales }}</h3></div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="stat-card" style="background:#20c997;"><small>{% trans "This Week" %}</small><h3>{{ week_sales }}</h3></div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="stat-card" style="background:#6f42c1;"><small>{% trans "This Month" %}</small><h3>{{ month_sales }}</h3></div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="stat-card" style="background:#fd7e14;"><small>{% trans "Est. Profit (month)" %}</small><h3>{{ estimated_profit|floatformat:0 }}</h3></div>
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Products" %}</small><h4>{{ total_products }}</h4></div></div>
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Low Stock" %}</small><h4 class="text-danger">{{ low_stock_count }}</h4></div></div>
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Customers" %}</small><h4>{{ total_customers }}</h4></div></div>
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Outstanding Debt" %}</small><h4>{{ outstanding_debt }}</h4></div></div>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-8">
+    <div class="card p-3">
+      <h6>{% trans "Sales - Last 7 Days" %}</h6>
+      <canvas id="salesChart" height="100"></canvas>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card p-3">
+      <h6>{% trans "Low Stock Items" %}</h6>
+      {% for p in low_stock_items %}
+        <div class="d-flex justify-content-between border-bottom py-1">
+          <span>{{ p.name }}</span><span class="badge bg-danger">{{ p.current_stock }}</span>
+        </div>
+      {% empty %}
+        <p class="text-muted small">{% trans "No low stock items." %}</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+new Chart(document.getElementById('salesChart'), {
+  type: 'line',
+  data: {
+    labels: {{ chart_labels|safe }},
+    datasets: [{ label: "{% trans 'Sales' %}", data: {{ chart_data|safe }}, borderColor: '#0d6efd', tension: .3, fill: false }]
+  },
+  options: { responsive: true, plugins: { legend: { display: false } } }
+});
+</script>
+{% endblock %}

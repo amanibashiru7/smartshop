@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="row g-3">
+  <div class="col-lg-8">
+    <h4 class="mb-3">{% trans "Select Products" %}</h4>
+    <input class="form-control mb-3" id="posSearch" placeholder="{% trans 'Search products...' %}">
+    <div class="row g-2" id="productGrid">
+      {% for p in products %}
+      <div class="col-6 col-md-4 product-item" data-name="{{ p.name|lower }}">
+        <div class="card pos-product-card p-2 text-center" onclick="addToCart({{ p.id }}, '{{ p.name|escapejs }}', {{ p.selling_price }}, {{ p.current_stock }})">
+          <div class="fw-bold small">{{ p.name }}</div>
+          <div class="text-primary">{{ p.selling_price }}</div>
+          <div class="text-muted small">{% trans "Stock" %}: {{ p.current_stock }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card p-3">
+      <h5>{% trans "Cart" %}</h5>
+      <div id="cartItems"></div>
+      <hr>
+      <div class="d-flex justify-content-between fw-bold"><span>{% trans "Total" %}</span><span id="cartTotal">0</span></div>
+      <div class="mt-3">
+        <label class="form-label">{% trans "Customer (optional)" %}</label>
+        <select class="form-select" id="customerSelect">
+          <option value="">{% trans "Walk-in customer" %}</option>
+          {% for c in customers %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}
+        </select>
+      </div>
+      <div class="form-check mt-2">
+        <input class="form-check-input" type="checkbox" id="isCredit">
+        <label class="form-check-label" for="isCredit">{% trans "Credit sale (add to customer debt)" %}</label>
+      </div>
+      <button class="btn btn-success w-100 mt-3" onclick="completeSale()"><i class="bi bi-check-circle"></i> {% trans "Complete Sale" %}</button>
+      <div id="posMessage" class="mt-2"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let cart = {};
+function addToCart(id, name, price, stock) {
+  if (!cart[id]) cart[id] = { name, price, qty: 0, stock };
+  if (cart[id].qty < stock) cart[id].qty += 1;
+  renderCart();
+}
+function removeFromCart(id) { delete cart[id]; renderCart(); }
+function changeQty(id, delta) {
+  cart[id].qty += delta;
+  if (cart[id].qty <= 0) delete cart[id];
+  renderCart();
+}
+function renderCart() {
+  const el = document.getElementById('cartItems');
+  el.innerHTML = '';
+  let total = 0;
+  for (const id in cart) {
+    const item = cart[id];
+    total += item.qty * item.price;
+    el.innerHTML += `<div class="d-flex justify-content-between align-items-center border-bottom py-1">
+      <div><div class="small fw-bold">${item.name}</div><div class="small text-muted">${item.price} x ${item.qty}</div></div>
+      <div class="d-flex align-items-center gap-1">
+        <button class="btn btn-sm btn-outline-secondary" onclick="changeQty(${id}, -1)">-</button>
+        <button class="btn btn-sm btn-outline-secondary" onclick="changeQty(${id}, 1)">+</button>
+        <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${id})"><i class="bi bi-trash"></i></button>
+      </div></div>`;
+  }
+  document.getElementById('cartTotal').innerText = total.toFixed(2);
+}
+function getCookie(name) {
+  const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return v ? v.pop() : '';
+}
+function completeSale() {
+  const items = Object.entries(cart).map(([id, v]) => ({ product_id: parseInt(id), quantity: v.qty }));
+  if (items.length === 0) { alert("{% trans 'Cart is empty.' %}"); return; }
+  fetch("{% url 'sales:complete_sale' %}", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-CSRFToken": getCookie("csrftoken") },
+    body: JSON.stringify({
+      items: items,
+      customer_id: document.getElementById('customerSelect').value || null,
+      is_credit: document.getElementById('isCredit').checked,
+    })
+  }).then(r => r.json()).then(data => {
+    const msg = document.getElementById('posMessage');
+    if (data.success) {
+      msg.innerHTML = `<div class="alert alert-success">{% trans "Sale completed" %} #${data.sale_id} - ${data.total}</div>`;
+      cart = {}; renderCart();
+      setTimeout(() => location.reload(), 1200);
+    } else {
+      msg.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+    }
+  });
+}
+document.getElementById('posSearch').addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('.product-item').forEach(el => {
+    el.style.display = el.dataset.name.includes(q) ? '' : 'none';
+  });
+});
+</script>
+{% endblock %}

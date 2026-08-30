@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Profit & Advanced Analytics" %}</h3>
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Revenue" %}</small><h4>{{ revenue }}</h4></div></div>
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Cost of Goods" %}</small><h4>{{ cost }}</h4></div></div>
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Expenses" %}</small><h4>{{ expenses }}</h4></div></div>
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Profit" %}</small><h4 class="{% if profit < 0 %}text-danger{% else %}text-success{% endif %}">{{ profit|floatformat:2 }}</h4></div></div>
+</div>
+<div class="card p-3">
+  <h6>{% trans "Best Selling Products" %}</h6>
+  <table class="table table-sm">
+    <thead><tr><th>{% trans "Product" %}</th><th>{% trans "Qty Sold" %}</th></tr></thead>
+    <tbody>{% for b in best_sellers %}<tr><td>{{ b.product__name }}</td><td>{{ b.qty }}</td></tr>{% endfor %}</tbody>
+  </table>
+</div>
+{% endblock %}

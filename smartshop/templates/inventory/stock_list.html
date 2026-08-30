@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Inventory / Stock" %}</h3>
+<div class="card p-3">
+<div class="table-responsive">
+<table class="table align-middle">
+<thead><tr><th>{% trans "Product" %}</th><th>{% trans "Current Stock" %}</th><th>{% trans "Min Level" %}</th><th></th></tr></thead>
+<tbody>
+{% for p in products %}
+<tr class="{% if p.is_low_stock %}table-danger{% endif %}">
+  <td>{{ p.name }}</td><td>{{ p.current_stock }}</td><td>{{ p.minimum_stock }}</td>
+  <td class="d-flex gap-2">
+    <a href="{% url 'inventory:stock_in' p.pk %}" class="btn btn-sm btn-success">{% trans "Stock In" %}</a>
+    <a href="{% url 'inventory:stock_adjust' p.pk %}" class="btn btn-sm btn-outline-secondary">{% trans "Adjust" %}</a>
+    <a href="{% url 'inventory:stock_history' p.pk %}" class="btn btn-sm btn-outline-primary">{% trans "History" %}</a>
+  </td>
+</tr>
+{% empty %}<tr><td colspan="4" class="text-center text-muted">{% trans "No products." %}</td></tr>
+{% endfor %}
+</tbody></table>
+</div></div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Reject Application" %} - {{ shop.name }}</h3>
+<div class="card p-4" style="max-width:600px;">
+  <form method="post">{% csrf_token %}
+    <label class="form-label">{% trans "Rejection reason" %}</label>
+    {{ form.reason }}
+    <div class="mt-3">
+      <button class="btn btn-danger" type="submit">{% trans "Confirm Rejection" %}</button>
+      <a href="{% url 'shops:pending_applications' %}" class="btn btn-outline-secondary">{% trans "Cancel" %}</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

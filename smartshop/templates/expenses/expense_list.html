@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Expenses" %}</h3>
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="card p-3">
+    <table class="table align-middle">
+    <thead><tr><th>{% trans "Date" %}</th><th>{% trans "Category" %}</th><th>{% trans "Amount" %}</th><th>{% trans "Description" %}</th></tr></thead>
+    <tbody>
+    {% for e in expenses %}<tr><td>{{ e.date }}</td><td>{{ e.get_category_display }}</td><td>{{ e.amount }}</td><td>{{ e.description }}</td></tr>
+    {% empty %}<tr><td colspan="4" class="text-center text-muted">{% trans "No expenses recorded." %}</td></tr>
+    {% endfor %}
+    </tbody></table>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card p-3">
+      <h6>{% trans "Record Expense" %}</h6>
+      <form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn btn-primary w-100" type="submit">{% trans "Save" %}</button></form>
+    </div>
+  </div>
+</div>
+{% endblock %}

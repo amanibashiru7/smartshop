@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "Super Admin Dashboard" %}</h3>
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3"><div class="stat-card" style="background:#0d6efd;"><small>{% trans "Total Shops" %}</small><h3>{{ total_shops }}</h3></div></div>
+  <div class="col-6 col-lg-3"><div class="stat-card" style="background:#ffc107;color:#000;"><small>{% trans "Pending" %}</small><h3>{{ pending }}</h3></div></div>
+  <div class="col-6 col-lg-3"><div class="stat-card" style="background:#20c997;"><small>{% trans "Approved" %}</small><h3>{{ approved }}</h3></div></div>
+  <div class="col-6 col-lg-3"><div class="stat-card" style="background:#dc3545;"><small>{% trans "Suspended" %}</small><h3>{{ suspended }}</h3></div></div>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Rejected" %}</small><h4>{{ rejected }}</h4></div></div>
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Free Shops" %}</small><h4>{{ free_shops }}</h4></div></div>
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Premium Shops" %}</small><h4>{{ premium_shops }}</h4></div></div>
+  <div class="col-6 col-lg-3"><div class="card p-3"><small class="text-muted">{% trans "Active Subscriptions" %}</small><h4>{{ active_subs }}</h4></div></div>
+</div>
+<a href="{% url 'shops:pending_applications' %}" class="btn btn-primary"><i class="bi bi-hourglass-split"></i> {% trans "Review Pending Applications" %}</a>
+<a href="{% url 'shops:all_shops' %}" class="btn btn-outline-secondary ms-2"><i class="bi bi-shop-window"></i> {% trans "View All Shops" %}</a>
+{% endblock %}

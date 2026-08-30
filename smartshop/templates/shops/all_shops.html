@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4">{% trans "All Shops" %}</h3>
+<div class="card p-3">
+<div class="table-responsive">
+<table class="table align-middle">
+<thead><tr><th>{% trans "Shop" %}</th><th>{% trans "Owner" %}</th><th>{% trans "Status" %}</th><th>{% trans "Plan" %}</th><th></th></tr></thead>
+<tbody>
+{% for shop in shops %}
+<tr>
+  <td>{{ shop.name }}</td>
+  <td>{{ shop.owner.email }}</td>
+  <td>
+    <span class="badge bg-{% if shop.status == 'approved' %}success{% elif shop.status == 'pending' %}warning text-dark{% elif shop.status == 'suspended' %}danger{% else %}secondary{% endif %}">
+      {{ shop.get_status_display }}
+    </span>
+  </td>
+  <td>{{ shop.subscription.plan.name|default:"-" }}</td>
+  <td class="d-flex gap-2">
+    {% if shop.status == 'suspended' %}
+      <form method="post" action="{% url 'shops:reactivate_shop' shop.id %}">{% csrf_token %}<button class="btn btn-sm btn-success">{% trans "Reactivate" %}</button></form>
+    {% elif shop.status == 'approved' %}
+      <form method="post" action="{% url 'shops:suspend_shop' shop.id %}">{% csrf_token %}<button class="btn btn-sm btn-outline-danger">{% trans "Suspend" %}</button></form>
+    {% endif %}
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+{% endblock %}

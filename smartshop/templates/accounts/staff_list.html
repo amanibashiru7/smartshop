@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h3 class="mb-4"><i class="bi bi-person-badge"></i> {% trans "Staff Management" %}</h3>
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="card p-3">
+      <table class="table align-middle">
+        <thead><tr><th>{% trans "Name" %}</th><th>{% trans "Email" %}</th><th>{% trans "Role" %}</th><th>{% trans "Status" %}</th><th></th></tr></thead>
+        <tbody>
+        {% for s in staff %}
+          <tr>
+            <td>{{ s.first_name }}</td><td>{{ s.email }}</td><td>{{ s.get_staff_role_display }}</td>
+            <td>{% if s.is_suspended %}<span class="badge bg-danger">{% trans "Suspended" %}</span>{% else %}<span class="badge bg-success">{% trans "Active" %}</span>{% endif %}</td>
+            <td>
+              <form method="post" action="{% url 'accounts:staff_toggle' s.pk %}">{% csrf_token %}
+                <button class="btn btn-sm btn-outline-secondary">{% if s.is_suspended %}{% trans "Reactivate" %}{% else %}{% trans "Suspend" %}{% endif %}</button>
+              </form>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5" class="text-muted text-center">{% trans "No staff yet." %}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card p-3">
+      <h5>{% trans "Add Staff Member" %}</h5>
+      <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary w-100" type="submit">{% trans "Create Staff Account" %}</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
