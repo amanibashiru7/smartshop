@@ -7,6 +7,7 @@ try:
 except ImportError:
     pass
 
+# BASE_DIR inatambua vizuri muundo wa mradi wako uliopo ndani ya folda ya smartshop
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "insecure-dev-key-change-me")
@@ -35,18 +36,19 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
 
-    "apps.accounts",
-    "apps.shops",
-    "apps.subscriptions",
-    "apps.inventory",
-    "apps.sales",
-    "apps.customers",
-    "apps.suppliers",
-    "apps.expenses",
-    "apps.reports",
-    "apps.notifications",
-    "apps.audit",
-    "apps.core",
+    # Zote zimewekewa kiambishi cha smartshop ili Python izitambue kwa usahihi kwenye Render
+    "smartshop.apps.accounts",
+    "smartshop.apps.shops",
+    "smartshop.apps.subscriptions",
+    "smartshop.apps.inventory",
+    "smartshop.apps.sales",
+    "smartshop.apps.customers",
+    "smartshop.apps.suppliers",
+    "smartshop.apps.expenses",
+    "smartshop.apps.reports",
+    "smartshop.apps.notifications",
+    "smartshop.apps.audit",
+    "smartshop.apps.core",
 ]
 
 MIDDLEWARE = [
@@ -58,11 +60,11 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "apps.accounts.middleware.SessionIdleTimeoutMiddleware",
-    "apps.accounts.middleware.ShopStatusMiddleware",
+    "smartshop.apps.accounts.middleware.SessionIdleTimeoutMiddleware",
+    "smartshop.apps.accounts.middleware.ShopStatusMiddleware",
 ]
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF = "smartshop.config.urls"
 
 TEMPLATES = [
     {
@@ -76,13 +78,13 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.i18n",
-                "apps.core.context_processors.shop_context",
+                "smartshop.apps.core.context_processors.shop_context",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = "config.wsgi.application"
+WSGI_APPLICATION = "smartshop.config.wsgi.application"
 
 DATABASES = {
     "default": {
