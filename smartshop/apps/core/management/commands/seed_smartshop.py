@@ -54,6 +54,8 @@ class Command(BaseCommand):
             },
         )
         user.role = User.Role.SUPER_ADMIN
+        user.shop = None
+        user.staff_role = None
         user.is_staff = True
         user.is_superuser = True
         user.is_active = True
@@ -65,4 +67,4 @@ class Command(BaseCommand):
         if created:
             self.stdout.write(self.style.SUCCESS(f"Created Super Admin: {email}"))
         else:
-            self.stdout.write(self.style.SUCCESS(f"Updated existing user to Super Admin with new password: {email}"))
+            self.stdout.write(self.style.SUCCESS(f"Updated existing user to Super Admin (cleared any shop link): {email}"))
