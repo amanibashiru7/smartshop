@@ -1,12 +1,3 @@
-"""
-Seeds initial data required for SmartShop to function:
-- Free & Premium subscription plans with feature flags
-- A Super Admin account (if one does not already exist)
-
-Usage:
-    python manage.py seed_smartshop
-    python manage.py seed_smartshop --admin-email admin@smartshop.local --admin-password ChangeMe123!
-"""
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
@@ -41,7 +32,7 @@ class Command(BaseCommand):
 
         free_plan, _ = Plan.objects.get_or_create(
             code=Plan.Code.FREE,
-            defaults={"name": "Free", "max_products": 100, "max_staff": 1, "price_per_month": 0},
+            defaults={"name": "Free", "max_products": 100, "max_staff": 1},
         )
         premium_plan, _ = Plan.objects.get_or_create(
             code=Plan.Code.PREMIUM,
@@ -52,12 +43,26 @@ class Command(BaseCommand):
 
         email = options["admin_email"]
         password = options["admin_password"]
-        if not User.objects.filter(role=User.Role.SUPER_ADMIN).exists():
-            User.objects.create_superuser(
-                username=email, email=email, password=password,
-                role=User.Role.SUPER_ADMIN, email_verified=True, first_name="Super Admin",
-            )
-            self.stdout.write(self.style.SUCCESS(f"Created Super Admin: {email} / {password}"))
-            self.stdout.write(self.style.WARNING("Change this password immediately after first login."))
+
+        user, created = User.objects.get_or_create(
+            email=email,
+            defaults={
+                "username": email,
+                "role": User.Role.SUPER_ADMIN,
+                "email_verified": True,
+                "first_name": "Super Admin",
+            },
+        )
+        user.role = User.Role.SUPER_ADMIN
+        user.is_staff = True
+        user.is_superuser = True
+        user.is_active = True
+        user.email_verified = True
+        user.is_suspended = False
+        user.set_password(password)
+        user.save()
+
+        if created:
+            self.stdout.write(self.style.SUCCESS(f"Created Super Admin: {email}"))
         else:
-            self.stdout.write(self.style.WARNING("A Super Admin already exists - skipped."))
+            self.stdout.write(self.style.SUCCESS(f"Updated existing user to Super Admin with new password: {email}"))
